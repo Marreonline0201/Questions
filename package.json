@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@dimforge/rapier3d-compat": "^0.19.3",
     "@xyflow/react": "^12.10.1",
     "framer-motion": "^12.38.0"
   }
