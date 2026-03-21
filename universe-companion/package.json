@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ai-sdk/react": "^3.0.0",
+    "@neondatabase/serverless": "^1.0.2",
     "ai": "^6.0.0",
     "nanoid": "^5.1.5",
     "next": "^16.2.1",

@@ -218,16 +218,25 @@ export default function CompanionPage() {
             UNIVERSE SIMULATION — REAL-WORLD PHYSICS ENGINE
           </div>
         </div>
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
-          <div style={{
-            width: 6, height: 6, borderRadius: '50%',
-            background: isStreaming ? '#f1c40f' : '#2ecc71',
-            boxShadow: isStreaming ? '0 0 6px #f1c40f' : '0 0 6px #2ecc71',
-            transition: 'all 0.3s',
-          }} />
-          <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.3)', letterSpacing: 1 }}>
-            {isStreaming ? 'THINKING' : 'READY'}
-          </span>
+        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 14 }}>
+          <a href="/universes" style={{
+            fontSize: 9, color: 'rgba(0,232,208,0.55)', letterSpacing: 1,
+            textDecoration: 'none', borderBottom: '1px solid rgba(0,232,208,0.2)',
+            paddingBottom: 1, transition: 'color 0.15s',
+          }}>
+            UNIVERSE MAP
+          </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <div style={{
+              width: 6, height: 6, borderRadius: '50%',
+              background: isStreaming ? '#f1c40f' : '#2ecc71',
+              boxShadow: isStreaming ? '0 0 6px #f1c40f' : '0 0 6px #2ecc71',
+              transition: 'all 0.3s',
+            }} />
+            <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.3)', letterSpacing: 1 }}>
+              {isStreaming ? 'THINKING' : 'READY'}
+            </span>
+          </div>
         </div>
       </header>
 
