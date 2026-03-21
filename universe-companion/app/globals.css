@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rust: #cd4420;
+  --rust-dim: #7a2910;
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --border: rgba(255,255,255,0.08);
+  --text-muted: rgba(255,255,255,0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: #e8e8e8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(205, 68, 32, 0.4);
+  border-radius: 2px;
+}
+
+/* Markdown prose inside AI responses */
+.prose-science p {
+  margin: 0.5rem 0;
+  line-height: 1.65;
+  font-size: 0.875rem;
+}
+.prose-science h1,
+.prose-science h2,
+.prose-science h3 {
+  color: #cd4420;
+  font-weight: 700;
+  margin: 0.75rem 0 0.25rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+.prose-science code {
+  background: rgba(205,68,32,0.12);
+  color: #f1a87a;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-size: 0.8em;
+}
+.prose-science pre {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(205,68,32,0.2);
+  border-radius: 4px;
+  padding: 0.75rem;
+  overflow-x: auto;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
+.prose-science ul,
+.prose-science ol {
+  padding-left: 1.25rem;
+  margin: 0.4rem 0;
+}
+.prose-science li {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 0.15rem;
+}
+.prose-science strong {
+  color: #f1c40f;
+  font-weight: 600;
+}
+.prose-science em {
+  color: rgba(255,255,255,0.65);
+}
+.prose-science blockquote {
+  border-left: 2px solid #cd4420;
+  padding-left: 0.75rem;
+  color: rgba(255,255,255,0.55);
+  margin: 0.5rem 0;
+  font-style: italic;
+}
+
+/* Cursor blink for streaming */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.cursor-blink::after {
+  content: '|';
+  color: #cd4420;
+  animation: blink 0.8s step-end infinite;
+  margin-left: 1px;
+}
+
+/* Fade-in for new messages */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.msg-enter {
+  animation: fadeSlideUp 0.2s ease-out forwards;
+}
