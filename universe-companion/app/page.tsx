@@ -219,7 +219,7 @@ export default function CompanionPage() {
           </div>
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 14 }}>
-          <a href="/universes" style={{
+          <a href="/universe-map" style={{
             fontSize: 9, color: 'rgba(0,232,208,0.55)', letterSpacing: 1,
             textDecoration: 'none', borderBottom: '1px solid rgba(0,232,208,0.2)',
             paddingBottom: 1, transition: 'color 0.15s',
