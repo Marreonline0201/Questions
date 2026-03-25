@@ -5,6 +5,7 @@
 // upgraded to the full registry component (npx ai-elements@latest add message)
 // without changing any import paths.
 
+import { memo } from 'react'
 import ReactMarkdown from 'react-markdown'
 
 interface MessageResponseProps {
@@ -14,10 +15,14 @@ interface MessageResponseProps {
   streaming?: boolean
 }
 
-export function MessageResponse({ children, className, streaming }: MessageResponseProps) {
+export const MessageResponse = memo(function MessageResponse({
+  children,
+  className,
+  streaming,
+}: MessageResponseProps) {
   return (
     <div className={`prose-science${streaming ? ' cursor-blink' : ''}${className ? ` ${className}` : ''}`}>
       <ReactMarkdown>{children}</ReactMarkdown>
     </div>
   )
-}
+})

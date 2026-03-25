@@ -5,7 +5,7 @@
 // Polls /api/universes every 30s. Visualizes each universe as a node
 // on an SVG starfield with connections showing the gateway hierarchy.
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useMemo } from 'react'
 import Link from 'next/link'
 
 interface UniverseRow {
@@ -88,6 +88,16 @@ export default function UniverseMapPage() {
   const W = 420, H = 340
   const cx = W / 2, cy = H / 2
 
+  // Pre-compute stars once — they never change between renders.
+  const stars = useMemo(() => Array.from({ length: 80 }, (_, i) => {
+    const seed = (i * 2891336453 + 0x9e3779b9) >>> 0
+    const x    = ((seed & 0x1ff) / 0x1ff) * W
+    const y    = (((seed >> 9) & 0x1ff) / 0x1ff) * H
+    const r    = 0.5 + ((seed >> 18) & 0x3) * 0.3
+    const op   = 0.15 + ((seed >> 22) & 0x7) * 0.04
+    return { i, x, y, r, op }
+  }), [])
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -162,14 +172,9 @@ export default function UniverseMapPage() {
               style={{ overflow: 'visible' }}
             >
               {/* Background stars */}
-              {Array.from({ length: 80 }, (_, i) => {
-                const seed = (i * 2891336453 + 0x9e3779b9) >>> 0
-                const x    = ((seed & 0x1ff) / 0x1ff) * W
-                const y    = (((seed >> 9) & 0x1ff) / 0x1ff) * H
-                const r    = 0.5 + ((seed >> 18) & 0x3) * 0.3
-                const op   = 0.15 + ((seed >> 22) & 0x7) * 0.04
-                return <circle key={i} cx={x} cy={y} r={r} fill="#fff" opacity={op} />
-              })}
+              {stars.map(({ i, x, y, r, op }) => (
+                <circle key={i} cx={x} cy={y} r={r} fill="#fff" opacity={op} />
+              ))}
 
               {/* Gateway connection lines (home → children) */}
               {universes.slice(1).map((u, i) => {

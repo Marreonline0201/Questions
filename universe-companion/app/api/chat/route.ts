@@ -25,18 +25,6 @@ export async function POST(req: Request) {
 
   const generationId = nanoid()
 
-  // Pre-log as pending before streaming starts
-  await appendGeneration({
-    id: generationId,
-    sessionId,
-    prompt: lastUserText,
-    response: '',
-    status: 'streaming',
-    timestamp: new Date().toISOString(),
-    // anthropic/claude-sonnet-4.6 — dots not hyphens per AI Gateway slug rules
-    model: 'anthropic/claude-sonnet-4.6',
-  })
-
   // convertToModelMessages is async in v6
   const modelMessages = await convertToModelMessages(messages)
 
